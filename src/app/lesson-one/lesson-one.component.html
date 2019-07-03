@@ -1,10 +1,86 @@
 <h1>Lesson 1</h1>
 
-<input class=" mr-3" type="text" value="{{myName}}" />=<input type="text" [value]="myName" />
+<h4>Интерполяция</h4>
+<input class=" mr-3" type="text" [value]="myName" /> Интерполяция <br>
+<input type="text" value="{{myName}}" /> <p> Привязка свойств элементов htmt</p>
+<p>
+        У html-элемента нет атрибута textContent. Зато у интерфейса Node, который представляет данный элемент DOM, есть свойство textContent, к которому мы можем осуществить привязку.
+</p>
 <p [textContent]="myName"></p>
+<hr>
 
-<table border="1">
-        <tr><td [attr.colspan]="colspan">One-Two</td></tr>
-        <tr><td>Three</td><td>Four</td><td>Four</td><td>Four</td></tr>
-        <tr><td>Five</td><td>Six</td></tr>
-</table>
+
+<!-- --------------------------------------------------- -->
+
+
+
+
+<div class="container">
+        Иногда возникает необходимость выполнить привязку не к свойству, а именно к атрибуту html-элемента. Хотя
+        свойства и атрибуты html-элементов могут пересекаться, как это было показано выше в примере с
+        свойством/атрибутом value, но такое соответствие бывает не всегда. В этом случае мы можем использоать выражение:
+        <br><code>
+        [attr.название_атрибута]="значение"
+        </code>
+        <table border="1">
+                <tr>
+                        <td [attr.colspan]="colspan">One-Two</td>
+                </tr>
+                <tr>
+                        <td>Three</td>
+                        <td>Four</td>
+                        <td>Four</td>
+                        <td>Four</td>
+                </tr>
+                <tr>
+                        <td>Five</td>
+                        <td>Six</td>
+                </tr>
+        </table>
+        <input type="text" [(ngModel)]="colspan"><hr>
+
+<!-- --------------------------------------------------- -->
+
+
+
+
+
+
+
+
+        <p>Количество кликов {{count}}</p>
+        <button (click)="increase()">Click</button><br>
+        <button on-click="increase()">Click</button>
+        <button (click)="increase($event)">Click</button>
+        <hr>
+
+<!-- --------------------------------------------------- -->
+
+
+
+        <h4>Привязка к классам CSS и Привязка стилей</h4>
+        <code>
+                        [class.имя_класса]="true/false" <br>
+                        [style.стилевое_свойство]="выражение ? A : B" <br>
+                        isRed = {{isRed}} <br>
+                        class = {{radius}}
+        </code>
+        
+        <!-- [style]="style" Так нельзя -->
+        <div 
+        [class]="radius" 
+        [class.isredbox]="isRed" 
+        [style.backgroundColor]="isRed? 'red' : 'green'"
+        >
+        </div>
+        <div  
+        [class]="radius" 
+        [class.isredbox]="!isRed" 
+        [style.backgroundColor]="!isRed? 'red' : 'green'">
+        </div>
+
+        <input type="checkbox" [(ngModel)]="isRed" /><br>
+        <button type="button" (click)="addWow()">Radius</button>
+        <hr>
+
+</div>

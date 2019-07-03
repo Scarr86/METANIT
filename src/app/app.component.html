@@ -1,33 +1,58 @@
-<h6> Webpack METANIT</h6>
-     <div class="border-bottom mb-5 pb-3 pt-2">
-    <h1> Список покупок </h1>
-</div>
-<div class="form-inline">
+<div class="main">
+    <h6> Webpack METANIT</h6>
+    <div class="border-bottom mb-5 pb-3 pt-2">
+        <h1> Список покупок </h1>
+    </div>
+    <div class="form-inline">
         <input class="form-control mb-2 mr-2" [(ngModel)]="text" placeholder="Название" />
         <input type="number" class="form-control mb-2 mr-2" [(ngModel)]="price" placeholder="Цена" />
-    <button class=" btn btn-outline-primary mb-2 mr-2" (click)="addItem(text, price)">Добавить</button>
+        <button class=" btn btn-outline-primary mb-2 mr-2" (click)="addItem(text, price)">Добавить</button>
+    </div>
+    <table class="table table-striped mt-5">
+        <thead>
+            <tr>
+                <th>Предмет</th>
+                <th>Цена</th>
+                <th>Куплено</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of items">
+                <td>{{item.purchase}}</td>
+                <td>{{item.price}}</td>
+                <td>
+                    <div
+                        class="d-flex flex-column flex-md-row  align-items-center justify-content-center flex-wrap ml-5">
+                        <input class=" mb-3 mb-md-0  mr-md-3 " type="checkbox" [(ngModel)]="item.done"
+                            (click)="showAlert(item)" />
+                        <button class="btn btn-outline-danger " (click)="delItem(item)">Удалить</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+
+
+
+
+
+    <!-- LESSON -->
+    <div class="container">
+        <app-lesson-one></app-lesson-one>
+
+
+        <!-- ng-content -->
+        <h3> Lesson 2 Взаимодействие между компонентами</h3>
+        <h4>Привязка к сеттеру</h4>
+        <child-comp [userName]="name" [userAge]='age' acc-id="10" >       
+             <h2>Добро пожаловать {{name}}</h2>
+        </child-comp>  
+        <input type="number" [(ngModel)]="age" >  
+        <hr>
+    </div>
 </div>
-<table class="table table-striped mt-5">
-    <thead>
-        <tr>
-            <th>Предмет</th>
-            <th>Цена</th>
-            <th>Куплено</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let item of items">
-            <td>{{item.purchase}}</td>
-            <td>{{item.price}}</td>
-            <td>
-                <div class="d-flex flex-column flex-md-row  align-items-center justify-content-center flex-wrap ml-5">
-                    <input class=" mb-3 mb-md-0  mr-md-3 " type="checkbox" [(ngModel)]="item.done" (click)="showAlert(item)" />
-                    <button class="btn btn-outline-danger " (click)="delItem(item)" >Удалить</button>
-                </div>
-            </td>
-        </tr>
-    </tbody>
-</table>
 
+    
 
-<app-lesson-one></app-lesson-one>
+<footer></footer>

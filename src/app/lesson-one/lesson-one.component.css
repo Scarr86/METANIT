@@ -1,0 +1,13 @@
+
+div.wrapper {
+    width:50px; 
+    height:50px; 
+    border:1px solid #ccc
+}
+.isredbox{
+    background-color:red;
+}
+
+.radius{
+    border-radius: 50%;
+}

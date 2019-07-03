@@ -13,3 +13,11 @@ td:last-child .btn{
     /* display: none; */
     visibility: hidden;
 }
+footer{
+    margin: 40px 0px 0px 0px;
+    min-height: 100px;
+    background-color: silver;
+    width: 100%;
+    position: relative;
+  
+}
