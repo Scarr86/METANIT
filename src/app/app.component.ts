@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 class Item {
     purchase: string;//покупка
@@ -17,12 +17,15 @@ class Item {
     templateUrl:'app.component.html',
 
 })
-export class AppComponent {
+export class AppComponent implements OnChanges {
 
-    name:string = "Денис";
+    @Input() name:string = "Денис";
     age:number = 24;
+    id:number = 55;
+    clicks:number = 10;
 
-
+    isShowModel:boolean = false;
+ 
 
     items: Item[] =
         [
@@ -41,9 +44,34 @@ export class AppComponent {
     showAlert(item: Item) {
         alert(item.purchase + " " + item.done);
     }
+
     delItem(item: Item) {
-        this.items.splice(
-            this.items.indexOf(item),
-            1);
+        this.items.splice(  this.items.indexOf(item), 1);
     }
+
+    onChanged(inc:any){
+        if(inc) this.clicks++
+        else this.clicks--;
+    }
+
+
+    ngOnChanges(changes: SimpleChanges) {
+        
+        //Не будет работатть потому что изменения отслеживаются только в дочерних компонентах
+        for (let propName in changes) {
+          let chng = changes[propName];
+          let cur  = JSON.stringify(chng.currentValue);
+          let prev = JSON.stringify(chng.previousValue);
+          this.print(`${propName}: currentValue = ${cur}, previousValue = ${prev}`);
+        }
+
+      }
+      private print(msg:string){
+          console.log(msg);
+      }
+
+      myClick(){
+          this.isShowModel = ! this.isShowModel ; 
+      }
+
 }

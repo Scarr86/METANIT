@@ -1,5 +1,5 @@
 <div class="main">
-    <h6> Webpack METANIT</h6>
+
     <div class="border-bottom mb-5 pb-3 pt-2">
         <h1> Список покупок </h1>
     </div>
@@ -39,20 +39,54 @@
 
     <!-- LESSON -->
     <div class="container">
+        <!-- LESSON 1 -->
         <app-lesson-one></app-lesson-one>
 
-
-        <!-- ng-content -->
+        <!-- LESSON 2 -->
         <h3> Lesson 2 Взаимодействие между компонентами</h3>
         <h4>Привязка к сеттеру</h4>
-        <child-comp [userName]="name" [userAge]='age' acc-id="10" >       
-             <h2>Добро пожаловать {{name}}</h2>
-        </child-comp>  
-        <input type="number" [(ngModel)]="age" >  
+        <div class="d-inline-block border ">
+            name <input type="text" [(ngModel)]="name"> <br>
+            age <input type="number" [(ngModel)]="age"> <br>
+            id <input type="number" [(ngModel)]="id"> <br>
+
+            <p>Count click: {{clicks}}</p>
+        </div>
+        <div class="d-inline-block border">
+            <child-comp [userName]="name" [userAge]='age' [(userId)]="id"  (onChanged)="onChanged($event)">
+                <!-- ng-content -->
+                <h2>Добро пожаловать {{name}}</h2>
+            </child-comp>
+        </div>
         <hr>
+        <!-- LESSON 3 -->
+        <h3> Lesson 3 </h3>
+        <child-2-comp [name]='name' (myOnClick)="myClick($event)"></child-2-comp>
+        <hr>
+
+        <!-- Large modal -->
+        <div id="exampleModalLive" class="modal " [style.display]=" isShowModel ? 'block' : 'none'" [style.padding-right]="isShowModel? '17px' : '0px'" >
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLiveLabel">Modal title</h5>
+                      <button type="button" class="close" (click)="myClick()">
+                        <span >×</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Woohoo, you're reading this text in a modal!</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary"  (click)="myClick()"  >Close</button>
+                      <button type="button" class="btn btn-primary"  (click)="myClick()">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
     </div>
 </div>
 
-    
+
 
 <footer></footer>
