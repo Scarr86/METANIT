@@ -10,7 +10,7 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 })
 export class AppLessonOne {
-    myName: string = 'myName';
+    myName: string = 'MyName';
     colspan: number = 3;
     count: number = 0;
     radius: string = 'wrapper';
@@ -27,7 +27,6 @@ export class AppLessonOne {
         this.count++;
         console.log($event instanceof MouseEvent);
         if (typeof $event !== "undefined") console.log($event);
-
     }
     addWow() {
         if (this.radius.indexOf("radius") == -1)

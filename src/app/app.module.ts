@@ -4,16 +4,18 @@ import { FormsModule }   from '@angular/forms';
 import { AppComponent }   from './app.component';
 import {AppLessonOne} from './lesson-one/lesson-one.component';
 
-import {ChildComponent} from './child.component';
-import {Child2Component} from './child2.component';
+import {ChildL2Component} from './childL2.component';
+import {ChildL3Component} from './childL3.component';
+import {ChildL4Component} from './childL4.component';
 
 @NgModule({
     imports:      [ BrowserModule, FormsModule ],
     declarations: [ 
         AppLessonOne,
         AppComponent,
-        ChildComponent,
-        Child2Component
+        ChildL2Component,
+        ChildL3Component,
+        ChildL4Component,
      ],
     bootstrap:    [ AppComponent ]
 })

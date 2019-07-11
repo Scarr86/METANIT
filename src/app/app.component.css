@@ -1,8 +1,10 @@
 h1, h2{color:navy;}
 p{font-size:13px;}
+
 :host {
     font-family: Verdana;
     color: #555;
+    font-size:13px;
 }
 
 td:last-child:hover button {
@@ -20,4 +22,61 @@ footer{
     width: 100%;
     position: relative;
   
+}
+
+.navbar-toggler{
+    order: -1;
+}
+
+
+
+@media (min-width: 992px){
+    nav .dropleft{
+        order: 1;
+    }  
+}
+a:focus{
+    background: tomato;
+}
+
+@keyframes CollapseShow{
+    from{
+        height: 0px;
+    }
+    to{
+        height: 105px;
+    }
+}
+
+
+.navbar-collapse {
+    /* height: 0px; */
+    /* animation: CollapseShow 1s ease-in 0s infinite alternate forwards ; */
+}
+.collapse{
+    /* display: block; */
+    /* flex-basis: auto; */
+    /* height: 100%; */
+    /* animation-name: CollapseShow ;
+    animation-duration: 2s ;
+    animation-timing-function: ease-in-out ;
+    animation-iteration-count: infinite ;
+    animation-delay: 0s;
+    animation-direction: alternate;
+    animation-fill-mode: forwards; */ 
+}
+
+
+.mydiv{
+    opacity: .1;
+}
+.mydiv:hover{
+    opacity: 1;
+}
+
+.mytransition:hover{
+    background: tomato !important;
+    width: 150px !important;
+    height: 150px !important;
+    transition: .3s !important;
 }

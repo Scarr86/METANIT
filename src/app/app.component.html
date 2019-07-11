@@ -38,55 +38,139 @@
 
 
     <!-- LESSON -->
-    <div class="container">
-        <!-- LESSON 1 -->
-        <app-lesson-one></app-lesson-one>
 
-        <!-- LESSON 2 -->
-        <h3> Lesson 2 Взаимодействие между компонентами</h3>
-        <h4>Привязка к сеттеру</h4>
-        <div class="d-inline-block border ">
-            name <input type="text" [(ngModel)]="name"> <br>
-            age <input type="number" [(ngModel)]="age"> <br>
-            id <input type="number" [(ngModel)]="id"> <br>
+</div>
 
-            <p>Count click: {{clicks}}</p>
-        </div>
-        <div class="d-inline-block border">
-            <child-comp [userName]="name" [userAge]='age' [(userId)]="id"  (onChanged)="onChanged($event)">
-                <!-- ng-content -->
-                <h2>Добро пожаловать {{name}}</h2>
-            </child-comp>
-        </div>
-        <hr>
-        <!-- LESSON 3 -->
-        <h3> Lesson 3 </h3>
-        <child-2-comp [name]='name' (myOnClick)="myClick($event)"></child-2-comp>
-        <hr>
+<div class="container">
+    <!-- LESSON 1 -->
+    <app-lesson-one></app-lesson-one>
 
-        <!-- Large modal -->
-        <div id="exampleModalLive" class="modal " [style.display]=" isShowModel ? 'block' : 'none'" [style.padding-right]="isShowModel? '17px' : '0px'" >
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLiveLabel">Modal title</h5>
-                      <button type="button" class="close" (click)="myClick()">
-                        <span >×</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <p>Woohoo, you're reading this text in a modal!</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary"  (click)="myClick()"  >Close</button>
-                      <button type="button" class="btn btn-primary"  (click)="myClick()">Save changes</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+    <!-- LESSON 2 -->
+    <h3> Lesson 2 Взаимодействие между компонентами</h3>
+    <h4>Привязка к сеттеру</h4>
+    <div class="d-inline-block border m-3 ">
+        <!-- Родительски компонент -->
+        <p> <strong>Родительски компонент</strong> </p>
+        name Child: <strong> {{nameChild}}</strong><br>
+        name <input type="text" [(ngModel)]="name"> <br>
+        age <input type="number" [(ngModel)]="age"> <br>
+        id <input type="number" [(ngModel)]="id"> <br>
+
+        <p>Count click: {{clicks}}</p>
     </div>
+
+    <div class="d-inline-block border">
+        <!-- Встроенный компонент -->
+        <child-L2-comp [userName]="name" [userAge]='age' (nameChildChange)="nameChild=$event" [(usrId)]="id"
+            (onChBtn)="onChanged($event)">
+            <!-- ng-content -->
+            <p> <strong>Встроенный компонент</strong> </p>
+            <h2>Добро пожаловать {{name}}</h2>
+        </child-L2-comp>
+    </div>
+    <hr>
+    <!-- LESSON 3 -->
+    <h3> Lesson 3 Жизненный цикл компонента (События)</h3>
+    <child-L3-comp [name]='name' [surname]='name'></child-L3-comp>
+    <hr>
+
+    <!-- LESSON 4 -->
+    <h3> Lesson 4 Шаблонные переменные, ViewChild</h3>
+    <div class="row text-center mb-3">
+        <div class="col border">
+            <child-L4-comp #count>
+                <h3 #headerContent>Урок 4(ContentChild) {{name}}</h3>
+            </child-L4-comp>
+            <child-L4-comp #count>
+                <h3 #headerContent>Урок 4(ContentChild) {{name}}</h3>
+            </child-L4-comp>
+        </div>
+        <div class="w-100"></div>
+        <div class="col border">
+            <p><code>counter.increment() counter.decrement()</code></p>
+            <button (click)="count.increment()">+</button>
+            <button (click)="count.decrement()">-</button>
+        </div>
+        <div class="col border">
+            <p>ViewChild</p>
+            <button (click)="inc()">+</button>
+            <button (click)="dec()">-</button>
+        </div>
+    </div>
+    <!--  -->
+    <div class="border">
+        <p>Привязка ViewChild к шаблонным переменным</p>
+        <p #nameText>{{nameL4}}</p>
+        <p>{{nameText.textContent}}</p>
+        <button (click)="changeL4()">Изменить</button>
+    </div>
+
 </div>
 
 
+
+
+<div class="btn btn-success" (click)="getCurrentPosition()">Geo</div>
+
+<div style="height: 100px;width: 100px;" class="mytransition mx-auto bg-dark"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="w-100 mt-5 border">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+        <a href="#!" class="navbar-brand">Logo</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Default dropleft button -->
+        <div class="btn-group dropleft">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                Dropleft
+            </button>
+            <div class="dropdown-menu">
+                <a href="#!" class="dropdown-item">Item 1</a>
+                <a href="#!" class="dropdown-item">Item 1</a>
+                <a href="#!" class="dropdown-item">Item 1</a>
+                <!-- Dropdown menu links -->
+            </div>
+        </div>
+
+        <div class="collapse navbar-collapse justify-content-center " id="navbarSupportedContent">
+            <ul class="navbar-nav ">
+                <li class="nav-item active"><a href="#!" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#!" class="nav-link">Features</a></li>
+                <li class="nav-item"><a href="#!" class="nav-link">About us</a></li>
+            </ul>
+        </div>
+
+    </nav>
+</div>
 
 <footer></footer>
