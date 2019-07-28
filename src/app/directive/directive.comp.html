@@ -1,0 +1,55 @@
+<div class="border">
+    <h4>ngClass</h4>
+    <div [ngClass]='{vedanaFont:true}'>
+        <!-- <div [ngClass]='{vedanaFont:isVerdana}'> -->
+        <!-- <div [class.verdanaFont]='true'> -->
+        <h1>Hello Directive</h1>
+        <p [ngClass]="{segoePrintFont:true}">
+            <!-- <p [ngClass]="{segoePrintFont:isSegoe}"> -->
+            <!-- <p [class.segoePrintFont]='true'> -->
+            Angular 8 представляет модульную архитектуру приложения
+        </p>
+    </div>
+
+    <div [ngClass]='currentClasses'>
+        <p>Однако с помощью ngClass мы можем задать целый набор классов, которые применяются к элементу:</p>
+        <h1>Hello Directive</h1>
+        <p>
+            Angular 8 представляет модульную архитектуру приложения
+        </p>
+    </div>
+
+</div>
+<div class="border">
+    <h4>ngStyle</h4>
+    <div [ngStyle]='{"font-size": "13px", "font-family":"Verdana"}'>
+        <!-- <div [style.fontSize]="'13px'" [style.fontFamily]="'Verdana'"> -->
+        <h1>Hello Directive</h1>
+        <p [ngStyle]="{'font-size':'14px', 'font-family':'Segoe Print'}">
+            <!-- <p [style.fontSize]="'14px'" [style.fontFamily]="'Segoe Print'"> -->
+            Angular 8 представляет модульную архитектуру приложения
+        </p>
+    </div>
+
+</div>
+<div class="border">
+    <h4><strong>Динамическое изменение стилей</strong></h4>
+    <div [ngClass]='{invisibile: visibility}'>
+        <!-- <div [class.invisibile]="visibility" > -->
+        <!-- <div [style.display]='visibility==true?"block":"none"'> -->
+        <h1>Hello Directive</h1>
+        <p>
+            Angular 8 представляет модульную архитектуру приложения
+        </p>
+    </div>
+    <button (click)='toggle()'>Toogle</button>
+
+</div>
+<!-- Используем самодельную Дерективу bold  -->
+<div   [bold]="'24px'" defaultSize="13px" class="border">
+    <!-- <div bold [bold]="'24px'" defaultSize="13px" class="border"> -->
+    <h4>Создание атрибутивных директив</h4>
+    <p>Hello custom Directive 'bold'
+        Показанно как сделать взоимодействие с пользователем
+    </p>
+</div>

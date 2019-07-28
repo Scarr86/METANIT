@@ -46,9 +46,9 @@
 
 
         <p>Количество кликов {{count}}</p>
-        <button (click)="increase()">Click</button><br>
-        <button on-click="increase()">Click</button>
-        <button (click)="increase($event)">Click</button>
+        <button (click)="increase()">Click (click)</button><br>
+        <button on-click="increase()">Click on-click</button>
+        <button (click)="increase($event)">Click $event</button>
         <hr>
 
 <!-- --------------------------------------------------- -->
@@ -77,5 +77,5 @@
         </div>
 
         <input type="checkbox" [(ngModel)]="isRed" /><br>
-        <button type="button" (click)="addWow()">Radius</button>
+        <button type="button" (click)="addRound()">Radius</button>
         <hr>

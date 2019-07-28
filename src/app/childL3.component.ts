@@ -10,17 +10,19 @@ import {
   AfterViewInit,
   OnDestroy,
   SimpleChanges,
-  
-  
+
+
 } from '@angular/core';
+import { LogService } from '../log.service';
 
 @Component({
   selector: 'child-L3-comp',
   template: `  
-    <h2>Привет(3 lesson)Name {{name}}!</h2>
-    <h2>Привет(3 lesson)Surname {{surname}}!</h2>
-    <strong>Выводить логи жизненного цикла</strong>  
-    <input type="checkbox"  [(ngModel)]="isLog" />
+  
+    <h2>Привет(3 lesson)Name: {{name}}!</h2>
+    <h2>Привет(3 lesson)Surname: {{surname}}!</h2>
+ 
+    
 
     `,
   styles: [`h2, p, strong {color:tomato;}`]
@@ -34,13 +36,16 @@ export class ChildL3Component implements OnInit,
   AfterViewChecked,
   AfterViewInit {
   @Input() name = "Tom";
-  @Input() surname="gggg";
-  isLog:boolean = false;
- 
+  @Input() surname = "gggg";
+  @Input() isLog: boolean = false;
+
 
   count: number = 1;
 
-  constructor() { this.log('constructor child 2') }
+  constructor(private logService: LogService) {
+    logService.write(this.constructor.toString().match(/\w+/g)[1] + " Load", 'h1');
+  }
+
 
   ngOnDestroy() { this.log('onDestroy child 2') }
 
@@ -54,35 +59,31 @@ export class ChildL3Component implements OnInit,
   // }
 
   ngOnInit() {
-    if(this.isLog)
-    this.log(`L3 ngOnInit`);
+    if (this.isLog)
+      this.log(`L3 ngOnInit`);
   }
   ngOnChanges() {
-    if(this.isLog)
-
-    this.log(`L3 OnChanges`);
+    if (this.isLog)
+      this.log(`L3 OnChanges`);
   }
   ngDoCheck() {
-    if(this.isLog)
-
-    this.log(`L3 ngDoCheck`);
+    if (this.isLog)
+      this.log(`L3 ngDoCheck`);
   }
   ngAfterViewInit() {
-    if(this.isLog)
-
-    this.log(`L3 ngAfterViewInit`);
+    if (this.isLog)
+      this.log(`L3 ngAfterViewInit`);
   }
   ngAfterViewChecked() {
-    if(this.isLog)
-
-    this.log(`L3 ngAfterViewChecked`);
+    if (this.isLog)
+      this.log(`L3 ngAfterViewChecked`);
   }
   ngAfterContentInit() {
-    if(this.isLog)
+    if (this.isLog)
       this.log(`L3 ngAfterContentInit`);
   }
   ngAfterContentChecked() {
-    if(this.isLog)
+    if (this.isLog)
       this.log(`L3 ngAfterContentChecked`);
   }
 

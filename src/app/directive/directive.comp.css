@@ -1,0 +1,15 @@
+.verdanaFont{
+    font-size: 13 px !important;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.segoePrintFont{
+    font-size: 14px;
+    font-family: "Segoe Print";
+}
+.navyColor{
+    color: navy;
+}
+
+.invisibile{
+ display: none ;   
+}

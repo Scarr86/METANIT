@@ -1,0 +1,197 @@
+
+<h3>ngModel for Form</h3>
+<section>
+    <div class="form-group">
+        <label>Название модели</label>
+        <input type="text" class="form-control" name='title' 
+        [(ngModel)]='phone.title' 
+        #phoneTitle='ngModel'
+        (change)='onTitleChange()'
+        (ngModelChange)='onTitleChange()' />
+        <!-- (ngModelChange)='onTitleChange()' срабатывает динамически при каждом вводе символа -->
+        <!-- (change)='onTitleChange()' срабатывает только когда выходим из области ввода -->
+    </div>
+    <div class="form-group">
+        <label for="">Цена</label>
+        <input type="text" class="form-control" name='price' 
+        [(ngModel)]='phone.price' 
+        #phonePrice='ngModel'
+        (ngModelChange)='onPriceChange()'>
+    </div>
+    <div class="form-group">
+        <label for="">Производитель</label>
+        <select class="form-control" name="company" 
+        [(ngModel)]='phone.company' 
+        #phoneCompany='ngModel'>
+            <option *ngFor='let comp of companies;' [value]="comp">
+                {{comp}}
+            </option>
+        </select>
+    </div>
+    <div class="form-group">
+    
+        <button class="btn btn-danger" (click)='addPhone2(phoneTitle, phonePrice, phoneCompany)'>
+            Добавить</button>
+    </div>
+    <div>
+        <h3>Добавленные Телефоны</h3>
+    <p>{{phoneTitle.name}} : {{phoneTitle.model}}</p>
+    <p>{{phonePrice.name}} : {{phonePrice.model}}</p>
+    <p>{{phoneCompany.name}} : {{phoneCompany.model}}</p>
+    </div>
+    <div>
+        <ul>
+            <li *ngFor='let p of phones'>{{p.title}} ({{p.company}}) - {{p.price}}</li>
+        </ul>
+    </div>
+    <hr>
+</section>
+
+<!--  -->
+<!--  -->
+<!--  -->
+<h3>ngModel + Валидация</h3>
+<section>
+    <div class="form-group">
+        <label for="">Name</label>
+        <input class="form-control" type="text" name='name' 
+        [(ngModel)]='user.name' #userName='ngModel'
+        required />
+        <div [hidden]="userName.valid || userName.untouched" class="alert alert-danger">
+            Не указано имя
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="">Email</label>
+        <input class="form-control" type="email" name='email' 
+        [(ngModel)]='user.email' #userEmail='ngModel'
+        required email />
+        <div [hidden]="userEmail.valid || userEmail.untouched" class="alert alert-danger">
+            Некорректный email
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="">Phone</label>
+        <input class="form-control" type="text" name='phone' 
+        [(ngModel)]='user.phone' #userPhone='ngModel'
+        required pattern="[0-9]{10}"/>
+        <div [hidden]="userPhone.valid || userPhone.untouched" class="alert alert-danger">
+            Некорректный телефон
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" [disabled]='userName.invalid || userEmail.invalid || userPhone.invalid' 
+        class="mr-3 btn btn-primary" (click)="addUser()">Add</button>
+        
+    </div>
+    <hr>
+</section>
+<!--  -->
+<!--  -->
+<!--  -->
+<!-- Спомощью ngForm  -->
+<h3>Спомощью ngForm Уже пользуемся тегом form</h3>
+<section>
+    <form #myForm='ngForm' (ngSubmit)='onSubmit(myForm)'>
+        <div class="form-group">
+            <label for="">Name</label>
+            <input class="form-control" name='name' ngModel
+            required />
+        </div>
+
+        <div class="form-group">
+            <label for="">Email</label>
+            <input class="form-control" name='email' ngModel
+            required email />
+        </div>
+
+        <div class="form-group">
+            <label for="">Phone</label>
+            <input type="text" class="form-control" name='phone' ngModel
+            required />
+        </div>
+
+        <div class="form-group">
+            <div [hidden]='myForm.invalid' >
+                <div >Name: {{myForm.value.name}}</div>
+                <div >Email: {{myForm.value.email}}</div>
+                <div >Phone: {{myForm.value.phone}}</div>
+            </div>
+            <!-- Спомощью ngForm отключаем кнопку -->
+            <button type="submit" [disabled]='myForm.invalid' 
+            class="mr-3 btn btn-primary" (click)="submit(myForm)">myFormADD</button>
+
+            <button type="submit" [disabled]='myForm.invalid' 
+            class="mr-3 btn btn-primary" >(ngSubmit)</button>
+            <button  class="btn btn-primary" type="reset">Reset</button>
+        </div>
+    </form>
+    <hr>
+</section>
+
+<!--  -->
+<!--  -->
+<!--  -->
+<!--Reactive Forms  -->
+<h3>Reactive Forms</h3>
+<section>
+    <form [formGroup]= "myFormGroup" (ngSubmit)='ReactiveFormSubmit()' >
+            <div class="form-group">
+                <label for=""> Name </label>
+                <input formControlName="userName" class="form-control"    />
+
+                <div class="alert alert-danger"
+                        *ngIf="myFormGroup.controls['userName'].invalid && myFormGroup.controls['userName'].touched">
+                        Не указано имя
+                </div>
+            </div>
+        
+            <div class="form-group">
+                <label for="">Email</label>
+                <input formControlName="userEmail" class="form-control" />
+
+                <div class="alert alert-danger"
+                    *ngIf='myFormGroup.controls["userEmail"].invalid && myFormGroup.controls["userEmail"].touched '>
+                    Некорректный email
+                </div>
+            </div>
+            <div class="form-group" >
+                <label for="">Phone</label>
+                <input formControlName="userPhone" class="form-control" />
+
+                <div class="alert alert-danger"
+                        *ngIf="myFormGroup.controls['userPhone'].invalid && myFormGroup.controls['userPhone'].touched">
+                        Некорректный номер телефона
+                </div>  
+            </div>
+
+            <div formArrayName='userPhones'>
+                <div class="form-group" *ngFor='let phone of myFormGroup.controls["userPhones"].controls;let i = index' >
+                    <label for="">Phones</label>
+                    <input formControlName="{{i}}" class="form-control" />
+                </div>
+            </div>
+
+        
+            <div class="form-group">
+
+                <button type="button" class="mr-3 btn btn-primary" (click)='addUserPhone()' >addPhones</button>
+
+                <button class="mr-3 btn btn-primary" [disabled]='myFormGroup.invalid' type="submit" >ADD</button>
+        
+                <button  class="btn btn-primary" type="reset">Reset</button>
+
+            </div>
+    </form>
+    <hr>
+</section>
+<!--  -->
+<!--  -->
+<!--  -->
+
+
+
+
+
+
+

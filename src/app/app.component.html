@@ -32,77 +32,222 @@
         </tbody>
     </table>
     <hr>
-
-
-
-
-
-    <!-- LESSON -->
-
 </div>
 
 <div class="container">
-    <!-- LESSON 1 -->
-    <app-lesson-one></app-lesson-one>
-
-    <!-- LESSON 2 -->
-    <h3> Lesson 2 Взаимодействие между компонентами</h3>
-    <h4>Привязка к сеттеру</h4>
-    <div class="d-inline-block border m-3 ">
-        <!-- Родительски компонент -->
-        <p> <strong>Родительски компонент</strong> </p>
-        name Child: <strong> {{nameChild}}</strong><br>
-        name <input type="text" [(ngModel)]="name"> <br>
-        age <input type="number" [(ngModel)]="age"> <br>
-        id <input type="number" [(ngModel)]="id"> <br>
-
-        <p>Count click: {{clicks}}</p>
-    </div>
-
-    <div class="d-inline-block border">
-        <!-- Встроенный компонент -->
-        <child-L2-comp [userName]="name" [userAge]='age' (nameChildChange)="nameChild=$event" [(usrId)]="id"
-            (onChBtn)="onChanged($event)">
-            <!-- ng-content -->
-            <p> <strong>Встроенный компонент</strong> </p>
-            <h2>Добро пожаловать {{name}}</h2>
-        </child-L2-comp>
-    </div>
-    <hr>
-    <!-- LESSON 3 -->
-    <h3> Lesson 3 Жизненный цикл компонента (События)</h3>
-    <child-L3-comp [name]='name' [surname]='name'></child-L3-comp>
-    <hr>
-
-    <!-- LESSON 4 -->
-    <h3> Lesson 4 Шаблонные переменные, ViewChild</h3>
-    <div class="row text-center mb-3">
-        <div class="col border">
-            <child-L4-comp #count>
-                <h3 #headerContent>Урок 4(ContentChild) {{name}}</h3>
-            </child-L4-comp>
-            <child-L4-comp #count>
-                <h3 #headerContent>Урок 4(ContentChild) {{name}}</h3>
-            </child-L4-comp>
-        </div>
-        <div class="w-100"></div>
-        <div class="col border">
-            <p><code>counter.increment() counter.decrement()</code></p>
-            <button (click)="count.increment()">+</button>
-            <button (click)="count.decrement()">-</button>
-        </div>
-        <div class="col border">
-            <p>ViewChild</p>
-            <button (click)="inc()">+</button>
-            <button (click)="dec()">-</button>
-        </div>
-    </div>
-    <!--  -->
+    <!-- LESSON 1  Итерполяция и Как свезать свойства и атрибуты -->
     <div class="border">
-        <p>Привязка ViewChild к шаблонным переменным</p>
-        <p #nameText>{{nameL4}}</p>
-        <p>{{nameText.textContent}}</p>
-        <button (click)="changeL4()">Изменить</button>
+        <app-lesson-one></app-lesson-one>
+    </div>
+    <hr>
+
+    <!-- LESSON 2 Взаимодействие между компонентами-->
+    <div class="border">
+        <h3> Lesson 2 Взаимодействие между компонентами</h3>
+        <h4>Привязка к сеттеру</h4>
+        <div class="d-inline-block border m-3 ">
+            <!-- Родительски компонент -->
+            <p> <strong>Родительски компонент</strong> </p>
+            name Child: <strong> {{nameChild}}</strong><br>
+            name <input type="text" [(ngModel)]="name"> <br>
+            age <input type="number" [(ngModel)]="age"> <br>
+            id <input type="number" [(ngModel)]="id"> <br>
+
+            <p>Count click: {{clicks}}</p>
+        </div>
+
+        <div class="d-inline-block border">
+            <!-- Встроенный компонент -->
+            <child-L2-comp [userName]="name" [userAge]='age' (nameChildChange)="nameChild=$event" [(usrId)]="id"
+                (onChBtn)="onChanged($event)">
+                <!-- ng-content -->
+                <p> <strong>Встроенный компонент</strong> </p>
+                <h2>Добро пожаловать {{name}}</h2>
+            </child-L2-comp>
+        </div>
+    </div>
+    <hr>
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!-- LESSON 3 Жизненный цикл компонента (События)-->
+    <div class="border">
+
+        <h3> Lesson 3 Жизненный цикл компонента (События)</h3>
+
+        <div class="form">
+            <div class="form-group">
+                <label>
+                    <h4>Name</h4>
+                </label>
+                <input type="text" class="form-control" [(ngModel)]="nameL3">
+            </div>
+            <div class="form-group">
+                <label>
+                    <h4>Surname</h4>
+                </label>
+                <input type="text" class="form-control" [(ngModel)]="SurnameL3">
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" [(ngModel)]="isLog" />
+                    <label class="form-check-label" for="defaultCheck2">
+                        <h4>Выводить логи жизненного цикла</h4>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <child-L3-comp [name]='nameL3' [surname]='SurnameL3' [isLog]='isLog'></child-L3-comp>
+    </div>
+    <hr>
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!-- LESSON 4 Шаблонные переменные, ViewChild-->
+    <div class="border p-4">
+        <h3> Lesson 4 Шаблонные переменные, ViewChild</h3>
+        <div class="row text-center mb-3">
+            <div class="col border">
+                <child-L4-comp #count>
+                    <h3 #headerContent>ng-content(ContentChild) <p>{{name}}</p></h3>
+                </child-L4-comp>
+                <child-L4-comp #count> </child-L4-comp>
+            </div>
+
+            <div class="w-100"></div>
+
+            <div class="col border">
+                <p><code>counter.increment() counter.decrement()</code></p>
+                <button (click)="count.increment()">+</button>
+                <button (click)="count.decrement()">-</button>
+            </div>
+
+            <div class="col border">
+                <p>ViewChild</p>
+                <button (click)="inc()">+</button>
+                <button (click)="dec()">-</button>
+            </div>
+        </div>
+        <!--  -->
+        <div class="border">
+            <p>Привязка ViewChild к шаблонным переменным</p>
+            <p #nameText>{{nameL4}}</p>
+            <p>{{nameText.textContent}}</p>
+            <button (click)="changeL4()">changeL4()</button>
+        </div>
+    </div>
+    <hr>
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!-- LESSON 5 Модули -->
+    <div class="border">
+        <h3>LESSON 5 Взаимодействие между модулями
+            <br> Заодно как определять геопозицию с помощбю браузерв
+        </h3>
+        <exmodule-data-comp></exmodule-data-comp>
+        <!-- <exmodule-data-comp></exmodule-data-comp> -->
+    </div>
+    <hr>
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!-- LESSON 6 Директивы-->
+    <div class="border">
+        <h3> LESSON 6 Директивы</h3>
+        <p>В Angular есть три типа директив: </p>
+        <ul>
+            <li>
+                Компоненты: компонент по сути также является директивой, а декоратор @Component расширяет возможности
+                декоратора
+                @Directive с помощью добавления функционала по работе с шаблонами.
+            </li>
+            <li>
+                Атрибутивные: они изменяют поведение уже существующего элемента, к которому они применяются. Например,
+                ngModel,
+                ngStyle, ngClass
+            </li>
+            <li>
+                Структурные: они изменяют структуру DOM с помощью добавления, изменения или удаления элементов html.
+                Например,
+                это директивы ngFor и ngIf
+            </li>
+        </ul>
+
+        <directive-comp></directive-comp>
+    </div>
+    <hr>
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!-- LESSON 7 Структурные директивы ngIf, ngFor, ngSwitch-->
+    <div class="border text-center">
+        <h3> LESSON 7 Структурные директивы ngIf, ngFor, ngSwitch</h3>
+
+        <child-L7-comp></child-L7-comp>
+
+    </div>
+    <hr>
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!-- LESSON 8  Сервисы и dependency injection-->
+    <div class="border">
+        <h2> LESSON 8 Сервисы и dependency injection</h2>
+        <p>Стандартные задачи сервисов:</p>
+        <ul>
+            <li>
+                <p> Предоставление данных приложению. Сервис может сам хранить данные в памяти, либо для получения
+                    данных
+                    может обращаться к какому-нибудь источнику данных, например, к серверу.
+                </p>
+            </li>
+            <li>
+                <p>
+                    Сервис может представлять канал взаимодействия между отдельными компонентами приложения
+                </p>
+            </li>
+            <li>
+                <p>
+                    Сервис может инкапсулировать бизнес-логику, различные вычислительные задачи, задачи по логгированию,
+                    которые лучше выносить из компонентов. Тем самым код компонентов будет сосредоточен непосредственно
+                    на
+                    работе с представлением. Кроме того, тем самым мы также можем решить проблему повторения кода, если
+                    нам
+                    потребуется выполнить одну и ту же задачу в разных компонентах и классах
+                </p>
+            </li>
+        </ul>
+        <child-L8-comp></child-L8-comp>
+    </div>
+    <hr>
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!-- Lesson 9 Формы и Реактивные вормы -->
+    <div class="border">
+        <h2>Lesson 9 Формы и Реактивные вормы</h2>
+        <form-module-L8-comp></form-module-L8-comp>
+    </div>
+    <hr>
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!-- LESSON 10 HTTP и взаимодействие с сервером HttpClient и отправка запросов -->
+    <div class="border">
+        <h3>LESSON 10 HTTP и взаимодействие с сервером HttpClient и отправка запросов</h3>
+        <L10-interaction-server></L10-interaction-server>
+    </div>
+    <hr>
+    <!--  -->
+    <!--  -->
+    <!--  -->
+
+    <!--LESSON 11 Маршрутизация  -->
+    <div class="border">
+        <h3>LESSON 11 Маршрутизация</h3>
+        <router-outlet></router-outlet>
     </div>
 
 </div>
@@ -110,7 +255,11 @@
 
 
 
-<div class="btn btn-success" (click)="getCurrentPosition()">Geo</div>
+
+<!-- Мои примеры с Users -->
+<example-users></example-users>
+
+<google-drive></google-drive>
 
 <div style="height: 100px;width: 100px;" class="mytransition mx-auto bg-dark"></div>
 

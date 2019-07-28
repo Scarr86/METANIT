@@ -1,0 +1,23 @@
+<div class="border d-flex flex-column align-items-center">
+    <h3>{{messege}}</h3>
+
+    <table class="table table-striped mt-5">
+        <thead>
+            <tr>
+                <th>Штрота</th>
+                <th>Долгота</th>
+                <th>Погрешность</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{geo?.Latitude}}</td>
+                <td>{{geo?.Longitude}}</td>
+                <td>{{geo?.Accuracy}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="btn btn-success mb-3" (click)="getCurrentPosition()">Geo</div>
+    <div class="btn btn-success " (click)="getSource()">getSource()</div>
+    <div class="btn btn-success " (click)="clearGeo()">clearGeo()</div>
+</div>

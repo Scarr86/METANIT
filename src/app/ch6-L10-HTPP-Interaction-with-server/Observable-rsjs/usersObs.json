@@ -1,0 +1,15 @@
+{ 
+    "userType": "User",
+    "userNum": 3,
+    "userList":
+    [{
+        "userName": "Bob",
+        "userAge": 28
+    },{
+        "userName": "Tom",
+        "userAge": 45
+    },{
+        "userName": "Alice",
+        "userAge": 32
+    }]
+}

@@ -1,0 +1,103 @@
+<h2>*ngIF</h2>
+<div class="row">
+    <div class="col">
+
+        <p *ngIf="condition">Привет мир</p>
+        <p *ngIf="!condition">Пока мир</p>
+
+    </div>
+
+    <div class="col">
+
+        <span> Альтернатива </span>
+
+        <p *ngIf="condition;else unset">Привет мир</p>
+        <ng-template #unset>
+            <p>Пока мир</p>
+        </ng-template>
+
+    </div>
+
+    <div class="col">
+
+        <span> Без сахара </span>
+        <ng-template [ngIf]='condition'>
+            <p>Hello</p>
+        </ng-template>
+        <ng-template [ngIf]='!condition'>
+            <p>By</p>
+        </ng-template>
+
+    </div>
+
+    <div class="col">
+        <span>Изощеренная логика</span><br>
+
+        <div *ngIf="condition; then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock> Then template</ng-template>
+        <ng-template #elseBlock> Else template</ng-template>
+
+    </div>
+
+    <div class="col">
+
+        <h4>*while Самодельный</h4>
+        <p *while='condition'>
+            Первый параграф
+        </p>
+        <p *while='!condition'>
+            Второй параграф
+        </p>
+
+    </div>
+
+    <div class="col">
+        <button (click)="toggle()">Toggle</button>
+    </div>
+</div>
+<!--  -->
+<!--  -->
+<!--  -->
+<h2>*ngFor</h2>
+<div class="row">
+
+    <div *ngFor="let item of items" class="col">
+        <p>{{item}}</p>
+    </div>
+
+    <div class="col-4">
+        <ul style="list-style: none;">
+            <li *ngFor="let item of items; let i = index">{{i+1}} {{item}}</li>
+        </ul>
+    </div>
+</div>
+<!--  -->
+<!--  -->
+<!--  -->
+<h2>*ngSwitch</h2>
+<div class="row">
+    <div class="col">
+        <div [ngSwitch]="myExpression">
+            <div *ngSwitchCase='1'> div ngSwitchCase = {{myExpression}} </div>
+            <div *ngSwitchCase='2'> div ngSwitchCase = {{myExpression}} </div>
+            <div *ngSwitchDefault> ngSwitchDefault </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <span>Здесь не нужны звездочки т.к. используется ng-template</span>
+
+        <div [ngSwitch]="myExpression">
+            <ng-template ngSwitchCase='1'> ngSwitchCase = {{myExpression}} </ng-template>
+            <ng-template ngSwitchCase='2'> ngSwitchCase = {{myExpression}} </ng-template>
+            <ng-template ngSwitchDefault> ngSwitchDefault </ng-template>
+        </div>
+    </div>
+
+    <div class="col">
+        <button (click)="SwitchCount()">SwitchCount = {{myExpression}}</button>
+    </div>
+</div>
+<!--  -->
+<!--  -->
+<!--  -->

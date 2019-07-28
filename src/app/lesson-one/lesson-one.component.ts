@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { LogService } from '../../log.service';
 
 
 
@@ -18,6 +18,9 @@ export class AppLessonOne {
 
     style:string = 'background-color: red;';
 
+    constructor(private logService: LogService){
+        logService.write(this.constructor.toString().match(/\w+/g)[1] + " Load", 'h1');
+    }
 
     increase(): void;
     //: void {
@@ -28,7 +31,7 @@ export class AppLessonOne {
         console.log($event instanceof MouseEvent);
         if (typeof $event !== "undefined") console.log($event);
     }
-    addWow() {
+    addRound() {
         if (this.radius.indexOf("radius") == -1)
         this.radius += " radius";
         else

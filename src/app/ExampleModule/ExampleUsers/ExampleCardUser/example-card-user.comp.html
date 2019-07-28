@@ -1,0 +1,10 @@
+<div appHover class="card   mb-5" style="width: 15rem;">
+    <img src="{{user.picture}}" class="card-img-top" alt="">
+    <div class="card-body" >
+        <h5 class="card-title"  [ngClass]="{'marked':isMarked}">
+            {{user.name | uppercase}}
+        </h5>
+        <p class="card-text" style="height: 130px;">{{user.location}}</p>
+        <button  class="btn btn-primary" (click)="onClick()">Marke</button>
+    </div>
+</div>

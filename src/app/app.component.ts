@@ -1,5 +1,6 @@
 import { Component, OnChanges, SimpleChanges, ViewChild, ElementRef } from '@angular/core';
 import { ChildL4Component } from './childL4.component';
+import { LogService } from '../log.service';
 
 class Item {
     purchase: string;//покупка
@@ -21,11 +22,14 @@ class Item {
 export class AppComponent implements OnChanges {
 
     name: string = `Денис`;
-    nameChild: string = 'nameChild';
+    nameChild: string = '';
     age: number = 24;
     id: number = 55;
 
     clicks: number = 10;
+    constructor(private logService: LogService){
+        logService.write(this.constructor.toString().match(/\w+/g)[1] + " Load", 'h1');
+    }
 
 
 
@@ -74,73 +78,21 @@ export class AppComponent implements OnChanges {
     }
 
     /********* LESSON 4 *****************/
-
+    // Привязка к метадам встроеного компонента ChildL4Component тоже используется @ViewChild  
     @ViewChild(ChildL4Component, { static: false })
     private counterComponent: ChildL4Component;
-
     inc() { this.counterComponent.increment(); }
-
     dec() { this.counterComponent.decrement(); }
 
-    //Привязка ViewChild к шаблонным переменным
+
+    //Привязка ViewChild к шаблонным переменным "nameText"
+    nameL4 = 'Joj';
+    
     @ViewChild('nameText', { static: true })
     nameParagraph: ElementRef;
-
-    nameL4 = 'Joj';
 
     changeL4() {
         console.log('L4 ' + this.nameParagraph.nativeElement.textContent);
         this.nameParagraph.nativeElement.textContent = "hell";
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // 
-    // 
-    // 
-    options:PositionOptions = {
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 0
-    };
-
-    success: PositionCallback = (pos: Position) => {
-        let crd = pos.coords;
-        console.log('Your current position is:');
-        console.log(`Latitude : ${crd.latitude}`);
-        console.log(`Longitude: ${crd.longitude}`);
-        console.log(`More or less ${crd.accuracy} meters.`);
-    }
-
-    error: PositionErrorCallback;
-
-    constructor() {
-        this.error = function (err: PositionError)  {
-            console.warn(`ERROR(${err.code}): ${err.message}`);
-        };
-    }
-    getCurrentPosition() {
-        navigator.geolocation.getCurrentPosition(this.success, this.error, this.options);
-    }
-
-
-
 }

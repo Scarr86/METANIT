@@ -1,0 +1,19 @@
+<div class="container mt-5">
+    <h3>Мои примеры с Users</h3>
+
+    <div class="form-inline mb-5 ">
+        <div class="form-group mr-3">
+            <label>Кольчество юзеров</label>
+            <input type="number" class="form-control" [(ngModel)]="numUser" />
+        </div>
+        <button class="btn btn-info" (click)="getUsers(numUser)">Get Users</button>
+    </div>
+
+
+
+    <div class="row flex-wrap justify-content-start">
+        <div *ngFor='let u of users' class="col col-md-3 ">
+            <example-card-user [user]='u'></example-card-user>
+        </div>
+    </div>
+</div>
